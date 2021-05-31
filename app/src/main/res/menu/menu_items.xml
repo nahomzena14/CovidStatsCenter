@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/current_location_menu"
+        android:title="Current Location"
+        android:icon="@drawable/ic_current_location"/>
+    <item
+        android:id="@+id/search_menu"
+        android:title="Search city"
+        android:icon="@drawable/ic_search"/>
+
+    <item
+        android:id="@+id/vaccine_menu"
+        android:title="Vaccine centers"
+        android:icon="@drawable/ic_vaccination"/>
+
+    <item
+        android:id="@+id/posts_menu"
+        android:title="Posts"
+        android:icon="@drawable/ic_posts"/>
+
+
+</menu>
