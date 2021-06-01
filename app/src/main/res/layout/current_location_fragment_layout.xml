@@ -2,6 +2,137 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4FB311">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/current_address_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text = "ADDRESSSSSSSSSSSSSSSSSssssssssssssssss"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:layout_margin="16dp"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".2" />
+
+    <TextView
+        android:id="@+id/city_name_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        tools:hint="ATLANTA"
+        android:layout_margin="16dp"/>
+
+    <TextView
+        android:id="@+id/date_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/city_name_textview"
+        tools:hint="DATE: 01/01/01"
+        android:textSize="24sp"
+        android:layout_margin="16dp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/active_cases_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/date_textview"
+        tools:hint="Active cases: 16000"
+        android:textSize="24sp"
+        android:layout_margin="16dp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/deaths_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/active_cases_textview"
+        tools:hint="Deaths: 16000"
+        android:textSize="24sp"
+        android:layout_margin="16dp"
+        android:textColor="@color/black"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <TextView
+        android:id="@+id/state_name_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline2"
+        tools:hint="GEORGIA"
+        android:layout_margin="5dp"/>
+
+    <TextView
+        android:id="@+id/state_confirmed_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/state_name_textview"
+        tools:hint="Confirmed: 16000"
+        android:textSize="24sp"
+        android:layout_margin="16dp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/state_deaths_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/state_confirmed_textview"
+        tools:hint="Deaths: 16000"
+        android:textSize="24sp"
+        android:layout_margin="16dp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/state_active_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/state_deaths_textview"
+        tools:hint="Active cases: 16000"
+        android:textSize="24sp"
+        android:layout_margin="16dp"
+        android:textColor="@color/black"/>
+
+    <TextView
+        android:id="@+id/fatality_rate_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/state_active_textview"
+        tools:hint="Fatality rate: 16000"
+        android:textSize="24sp"
+        android:layout_margin="16dp"
+        android:textColor="@color/black"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
