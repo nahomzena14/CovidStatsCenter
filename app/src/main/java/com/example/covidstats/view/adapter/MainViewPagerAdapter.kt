@@ -5,9 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.covidstats.util.MenuItems
-import com.example.covidstats.view.fragment.ApplicatonFragment
-import com.example.covidstats.view.fragment.CurrentLocationFragment
-import com.example.covidstats.view.fragment.SearchFragment
+import com.example.covidstats.view.fragment.*
 
 class MainViewPagerAdapter(fragmentManager: FragmentManager): FragmentPagerAdapter(fragmentManager,     FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     override fun getCount(): Int {
@@ -16,10 +14,10 @@ class MainViewPagerAdapter(fragmentManager: FragmentManager): FragmentPagerAdapt
 
     override fun getItem(position: Int): Fragment {
         return when(position){
-            0->  CurrentLocationFragment()
-            1-> SearchFragment()
-            2-> ApplicatonFragment.getInstance(MenuItems.VACCINE)
-            else ->ApplicatonFragment.getInstance(MenuItems.POSTS)
+            0-> AdviceFragment()
+            1-> CurrentLocationFragment()
+            2-> SearchFragment()
+            else -> VaccineCenterFragment()
         }
     }
 }

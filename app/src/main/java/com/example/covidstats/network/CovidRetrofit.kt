@@ -24,12 +24,20 @@ class CovidRetrofit {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-    fun getNumbers(state: String,city: String):Single<CovidResponse> = covidService.getNumbers(state,city)
+    fun getNumbers(state: String,city: String):Single<CovidResponse> {
+        return covidService.getNumbers(state,city)
+    }
+
+    fun getNumbersFromState(state:String):Single<CovidResponse>{
+        return covidService.getNumbersFromState(state)
+    }
 
     interface CovidService {
 
         @GET(END_POINT)
         fun getNumbers(@Query(REGION) state: String,@Query(CITY) city: String): Single<CovidResponse>
+        @GET(END_POINT)
+        fun getNumbersFromState(@Query(REGION) state: String): Single<CovidResponse>
 
     }
 }

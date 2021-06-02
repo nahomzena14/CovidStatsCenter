@@ -1,17 +1,20 @@
 package com.example.covidstats.view.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.example.covidstats.R
 import com.example.covidstats.viewmodel.CovidViewModel
+import com.example.covidstats.viewmodel.CovidViewModel2
 import kotlinx.android.synthetic.main.search_fragment_layout.*
 
 class SearchFragment() : Fragment() {
 
-    private val viewModel = CovidViewModel()
+    private val viewModel :CovidViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

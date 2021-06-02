@@ -9,39 +9,37 @@ import com.example.covidstats.network.CovidRetrofit
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlin.math.log
 
-class CovidViewModel : ViewModel() {
+
+//FOR CURRENT LOCATION TAB
+class CovidViewModel2 : ViewModel() {
 
     private val cd = CompositeDisposable()
 
     private val covidRetrofit = CovidRetrofit()
-    var cityLiveData = MutableLiveData<City>()
+    var cityLiveData = MutableLiveData<List<City>>()
     var regionLiveData = MutableLiveData<Data>()
 
 
-    fun getNumbers(state: String, city: String) {
-
+    fun getNumbers(state: String) {
         cd.add(
-            covidRetrofit.getNumbers(state, city)
+            covidRetrofit.getNumbersFromState(state.trim())
                 .subscribeOn(
                     Schedulers.io()
                 ).observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->
+                    Log.d("TAG_X","ENTERED GET NUMBERS")
+                    //Log.d("TAG_X", "LENGTH: "+response.data.size.toString())
+                    //0 = USA and get cities from there
+                    //DATA(state stats) - REGION (province = state name)- region.cities[0] = city details
+                    cityLiveData.postValue(response.data[0].region.cities)
+                    regionLiveData.postValue(response.data[0])
 
-                    if (response.data.size != 0) {
-                        //0 = USA and get cities from there
-                        //DATA(state stats) - REGION (province = state name)- region.cities[0] = city details
-                        Log.d("TAG_X", "City: " + response.data[0].region.cities[0])
-                        cityLiveData.postValue(response.data[0].region.cities[0])
-                        regionLiveData.postValue(response.data[0])
+                    //Log.d("TAG_X", cityResult.name)
 
-                        //Log.d("TAG_X", cityResult.name)
+                    cd.clear()
 
-                        cd.clear()
-                    }
-                    else{
-                        Log.d("TAG_X", "RESPONSE INVALID")
-                    }
                 }, { throwable ->
                     cd.clear()
                     Log.d("TAG_X", throwable.toString())

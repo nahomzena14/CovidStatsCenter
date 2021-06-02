@@ -42,10 +42,10 @@ class MainActivity : AppCompatActivity() {
 
         main_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.current_location_menu -> openFragment(0)
-                R.id.search_menu -> openFragment(1)
-                R.id.vaccine_menu -> openFragment(2)
-                R.id.posts_menu -> openFragment(3)
+                R.id.advice_menu -> openFragment(0)
+                R.id.current_location_menu -> openFragment(1)
+                R.id.search_menu -> openFragment(2)
+                R.id.vaccine_menu -> openFragment(3)
             }
             true
         }
@@ -73,9 +73,6 @@ class MainActivity : AppCompatActivity() {
                 Constants.currentState =  it[0].adminArea
                 Constants.currentAddress = it[0].getAddressLine(0)
 
-                Log.d("TAG_X","City: "+Constants.currentCity)
-                Log.d("TAG_X","State: "+Constants.currentState)
-                Log.d("TAG_X","Addy: "+Constants.currentAddress)
             }
     }
 
