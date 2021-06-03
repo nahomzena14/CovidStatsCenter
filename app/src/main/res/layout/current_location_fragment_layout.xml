@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/red">
 
 
     <Button
@@ -30,8 +31,8 @@
         android:id="@+id/state_name_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +49,7 @@
         tools:hint="Confirmed: 16000"
         android:textSize="24sp"
         android:layout_margin="16dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/white"/>
 
     <TextView
         android:id="@+id/state_deaths_textview"
@@ -59,7 +60,7 @@
         tools:hint="Deaths: 16000"
         android:textSize="24sp"
         android:layout_margin="16dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/white"/>
 
     <TextView
         android:id="@+id/state_active_textview"
@@ -70,7 +71,7 @@
         tools:hint="Active cases: 16000"
         android:textSize="24sp"
         android:layout_margin="16dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/white"/>
 
     <TextView
         android:id="@+id/fatality_rate_textview"
@@ -81,7 +82,8 @@
         tools:hint="Fatality rate: 16000"
         android:textSize="24sp"
         android:layout_margin="16dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/white"/>
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
@@ -97,9 +99,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text = "Avoid these counties in Georgia"
-        android:textColor="@color/red"
+        android:textColor="@color/white"
         android:textSize="22sp"
         android:layout_margin="16dp"
+        android:gravity="center"
+        android:textStyle="bold"
        />
 
     <TextView
@@ -109,8 +113,8 @@
         app:layout_constraintTop_toBottomOf="@id/avoid_textview"
         tools:text="WASHINGTON: Active cases: 1500"
         android:layout_margin="16dp"
-        android:textColor="@color/red"
-        android:textSize="20sp"/>
+        android:textColor="@color/white"
+        android:textSize="22sp"/>
     <TextView
         android:id="@+id/avoid_2"
         android:layout_width="match_parent"
@@ -118,8 +122,8 @@
         app:layout_constraintTop_toBottomOf="@id/avoid_1"
         tools:text="WASHINGTON: Active cases: 1500"
         android:layout_margin="16dp"
-        android:textColor="@color/red"
-        android:textSize="20sp"/>
+        android:textColor="@color/white"
+        android:textSize="22sp"/>
     <TextView
         android:id="@+id/avoid_3"
         android:layout_width="match_parent"
@@ -127,7 +131,25 @@
         app:layout_constraintTop_toBottomOf="@id/avoid_2"
         tools:text="WASHINGTON: Active cases: 1500"
         android:layout_margin="16dp"
-        android:textColor="@color/red"
-        android:textSize="20sp"/>
+        android:textColor="@color/white"
+        android:textSize="22sp"/>
+    <TextView
+        android:id="@+id/avoid_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/avoid_3"
+        tools:text="WASHINGTON: Active cases: 1500"
+        android:layout_margin="16dp"
+        android:textColor="@color/white"
+        android:textSize="22sp"/>
+    <TextView
+        android:id="@+id/avoid_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/avoid_4"
+        tools:text="WASHINGTON: Active cases: 1500"
+        android:layout_margin="16dp"
+        android:textColor="@color/white"
+        android:textSize="22sp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

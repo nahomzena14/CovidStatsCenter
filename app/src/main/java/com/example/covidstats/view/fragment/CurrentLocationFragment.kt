@@ -34,40 +34,61 @@ class CurrentLocationFragment : Fragment() {
         if (userCurrentAddress.isEmpty()) {
             get_location_button.isClickable = false
         } else {
-
             get_location_button.setOnClickListener {
                 viewModel.getNumbers(userCurrentState)
                 //set views
-                avoid_textview.text = "These counties in $userCurrentState are considered high risk"
+                "These counties in $userCurrentState are considered high risk".also {
+                    avoid_textview.text = it
+                }
                 //city portion
                 viewModel.cityLiveData.observe(viewLifecycleOwner, { city ->
-                    Log.d("TAG_X","GONNA ASSIGN TOP 3")
+                    Log.d("TAG_X", "GONNA ASSIGN TOP 3")
                     var tempCity = topThreeCitiesGetter(city)
-                    Log.d("TAG_X","ONE"+ tempCity?.get(0)?.name)
-                    Log.d("TAG_X","TWO"+tempCity?.get(1)?.name)
-                    Log.d("TAG_X","THREE"+tempCity?.get(2)?.name)
+                    Log.d("TAG_X", "ONE" + tempCity?.get(0)?.name)
+                    Log.d("TAG_X", "TWO" + tempCity?.get(1)?.name)
+                    Log.d("TAG_X", "THREE" + tempCity?.get(2)?.name)
 
                     var length = tempCity?.size
 
-                    if(0 < length!!){
-                        avoid_1.text = tempCity?.get(length-1)?.name +": Active cases: ${tempCity?.get(length-1)?.confirmed}"
+                    if (0 < length!!) {
+                        (tempCity?.get(length - 1)?.name + ": Active cases: ${
+                            tempCity?.get(length - 1)?.confirmed
+                        }").also { avoid_1.text = it }
                     }
-                    if(1 < length!!){
-                        avoid_2.text = tempCity?.get(length-2)?.name +": Active cases: ${tempCity?.get(length-2)?.confirmed}"
+                    if (1 < length!!) {
+                        (tempCity?.get(length - 2)?.name + ": Active cases: ${
+                            tempCity?.get(length - 2)?.confirmed
+                        }").also { avoid_2.text = it }
                     }
-                    if(2 < length!!){
-                        avoid_3.text = tempCity?.get(length-3)?.name +": Active cases: ${tempCity?.get(length-3)?.confirmed}"
+                    if (2 < length!!) {
+                        (tempCity?.get(length - 3)?.name + ": Active cases: ${
+                            tempCity?.get(length - 3)?.confirmed
+                        }").also { avoid_3.text = it }
+                    }
+                    if (3 < length!!) {
+                        (tempCity?.get(length - 4)?.name + ": Active cases: ${
+                            tempCity?.get(length - 4)?.confirmed
+                        }").also { avoid_4.text = it }
+                    }
+                    if (4 < length!!) {
+                        (tempCity?.get(length - 5)?.name + ": Active cases: ${
+                            tempCity?.get(length - 4)?.confirmed
+                        }").also { avoid_5.text = it }
                     }
 
                 })
                 viewModel.regionLiveData.observe(viewLifecycleOwner, { state ->
                     state_name_textview.text = state.region.province
-                    state_confirmed_textview.text =
-                        "Confirmed cases: " + state.confirmed.toString()
-                    state_deaths_textview.text = "Death: " + state.deaths.toString()
-                    state_active_textview.text = "Active cases: " + state.confirmed.toString()
-                    fatality_rate_textview.text =
-                        "Fatality rate: " + state.fatality_rate.toString()
+                    ("Confirmed cases: " + state.confirmed.toString()).also {
+                        state_confirmed_textview.text = it
+                    }
+                    ("Death: " + state.deaths.toString()).also { state_deaths_textview.text = it }
+                    ("Active cases: " + state.confirmed.toString()).also {
+                        state_active_textview.text = it
+                    }
+                    ("Fatality rate: " + state.fatality_rate.toString()).also {
+                        fatality_rate_textview.text = it
+                    }
                 })
 
             }

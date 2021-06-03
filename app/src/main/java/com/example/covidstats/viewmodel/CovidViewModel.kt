@@ -1,6 +1,7 @@
 package com.example.covidstats.viewmodel
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.covidstats.covidModel.City
@@ -13,14 +14,14 @@ import io.reactivex.schedulers.Schedulers
 class CovidViewModel : ViewModel() {
 
     private val cd = CompositeDisposable()
-
+    private var validInput:Boolean = false;
     private val covidRetrofit = CovidRetrofit()
     var cityLiveData = MutableLiveData<City>()
     var regionLiveData = MutableLiveData<Data>()
 
 
     fun getNumbers(state: String, city: String) {
-
+        validInput = true
         cd.add(
             covidRetrofit.getNumbers(state, city)
                 .subscribeOn(
@@ -38,11 +39,11 @@ class CovidViewModel : ViewModel() {
                         cd.clear()
                     }
                     else{
+                        validInput = false
                         Log.d("TAG_X", "RESPONSE INVALID")
                     }
-                }, { throwable ->
+                }, {
                     cd.clear()
-                    Log.d("TAG_X", throwable.toString())
                 })
         )
     }
@@ -50,6 +51,10 @@ class CovidViewModel : ViewModel() {
     override fun onCleared() {
         cd.clear()
         super.onCleared()
+    }
+
+    fun getInputValid():Boolean{
+        return validInput;
     }
 
 }

@@ -7,7 +7,7 @@
         android:icon="@drawable/ic_advice"/>
     <item
         android:id="@+id/current_location_menu"
-        android:title="Current Location"
+        android:title="Your Location"
         android:icon="@drawable/ic_current_location"/>
     <item
         android:id="@+id/search_menu"

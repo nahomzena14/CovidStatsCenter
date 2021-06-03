@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/blue">
 
     <EditText
         android:id="@+id/city_edittext"
@@ -12,13 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@color/blue"
-        android:hint="   Enter city name   "
+        android:hint="Enter city name"
         android:inputType="text"
         android:padding="2dp"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,12 +27,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:background="@color/blue"
-        android:hint="     Enter state name     "
+        android:hint="Enter state name"
         android:inputType="text"
+        android:textColor="@color/white"
         android:textColorHint="@color/white"
         android:textSize="30dp"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/city_edittext" />
 
@@ -45,7 +43,10 @@
         android:text="Search"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/state_edittext" />
+        app:layout_constraintTop_toBottomOf="@id/state_edittext"
+        android:background="@color/orange"
+        android:padding="6dp"
+        android:textColor="@color/white"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -58,47 +59,47 @@
         android:id="@+id/city_name_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
+        android:layout_margin="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline"
-        tools:hint="ATLANTA"
-        android:layout_margin="16dp"/>
+        tools:hint="ATLANTA" />
 
     <TextView
         android:id="@+id/date_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textColor="@color/white"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/city_name_textview"
-        tools:hint="DATE: 01/01/01"
-        android:textSize="24sp"
-        android:layout_margin="16dp"
-        android:textColor="@color/black"/>
+        tools:hint="DATE: 01/01/01" />
 
     <TextView
         android:id="@+id/active_cases_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textColor="@color/white"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/date_textview"
-        tools:hint="Active cases: 16000"
-        android:textSize="24sp"
-        android:layout_margin="16dp"
-        android:textColor="@color/black"/>
+        tools:hint="Active cases: 16000" />
 
     <TextView
         android:id="@+id/deaths_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textColor="@color/white"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/active_cases_textview"
-        tools:hint="Deaths: 16000"
-        android:textSize="24sp"
-        android:layout_margin="16dp"
-        android:textColor="@color/black"/>
+        tools:hint="Deaths: 16000" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -111,57 +112,57 @@
         android:id="@+id/state_name_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
+        android:layout_margin="5dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline2"
-        tools:hint="GEORGIA"
-        android:layout_margin="5dp"/>
+        tools:hint="GEORGIA" />
 
     <TextView
         android:id="@+id/state_confirmed_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textColor="@color/white"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/state_name_textview"
-        tools:hint="Confirmed: 16000"
-        android:textSize="24sp"
-        android:layout_margin="16dp"
-        android:textColor="@color/black"/>
+        tools:hint="Confirmed: 16000" />
 
     <TextView
         android:id="@+id/state_deaths_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textColor="@color/white"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/state_confirmed_textview"
-        tools:hint="Deaths: 16000"
-        android:textSize="24sp"
-        android:layout_margin="16dp"
-        android:textColor="@color/black"/>
+        tools:hint="Deaths: 16000" />
 
     <TextView
         android:id="@+id/state_active_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textColor="@color/white"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/state_deaths_textview"
-        tools:hint="Active cases: 16000"
-        android:textSize="24sp"
-        android:layout_margin="16dp"
-        android:textColor="@color/black"/>
+        tools:hint="Active cases: 16000" />
 
     <TextView
         android:id="@+id/fatality_rate_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textColor="@color/white"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/state_active_textview"
-        tools:hint="Fatality rate: 16000"
-        android:textSize="24sp"
-        android:layout_margin="16dp"
-        android:textColor="@color/black"/>
+        tools:hint="Fatality rate: 16000" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

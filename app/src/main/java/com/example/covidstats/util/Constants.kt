@@ -16,5 +16,6 @@ class Constants {
         var currentCity: String = ""
         lateinit var location:Location
         var ready = false
+        const val REQUEST_CODE = 777
     }
 }

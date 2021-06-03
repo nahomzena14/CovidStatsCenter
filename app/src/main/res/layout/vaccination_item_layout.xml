@@ -44,8 +44,9 @@
             android:layout_margin="16dp"
             android:textSize="20sp"
             app:layout_constraintTop_toBottomOf="@id/vaccine_address_textview"
+            app:layout_constraintStart_toStartOf="parent"
             tools:text="Open now"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

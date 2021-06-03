@@ -35,32 +35,38 @@ class SearchFragment() : Fragment() {
             //if input is empty
             if (cityName.isEmpty()) {
                 toastMessage("Please enter a city name")
-            }
-            else if(stateName.isEmpty()){
+            } else if (stateName.isEmpty()) {
                 toastMessage("Please enter a state name")
-            }
-            else {
+            } else {
                 viewModel.getNumbers(stateName, cityName)
                 //city
-                viewModel.cityLiveData.observe(viewLifecycleOwner, { city ->
-                    city_name_textview.text = city.name
-                    date_textview.text = "Date: " + city.date
-                    active_cases_textview.text = "Active Cases: " + city.confirmed.toString()
-                    deaths_textview.text = "Deaths: " + city.deaths.toString()
-                })
-                //state
-                viewModel.regionLiveData.observe(viewLifecycleOwner, { state ->
-                    state_name_textview.text = state.region.province
-                    state_confirmed_textview.text = "Confirmed cases: " + state.confirmed.toString()
-                    state_deaths_textview.text = "Deaths: " + state.deaths.toString()
-                    state_active_textview.text = "Active cases: " + state.active.toString()
-                    fatality_rate_textview.text = "Fatality rate: " + state.fatality_rate.toString()
-                })
+                if (viewModel.getInputValid()) {
+                    viewModel.cityLiveData.observe(viewLifecycleOwner, { city ->
+                        city_name_textview.text = city.name
+                        date_textview.text = "Date: " + city.date
+                        active_cases_textview.text = "Active Cases: " + city.confirmed.toString()
+                        deaths_textview.text = "Deaths: " + city.deaths.toString()
+                    })
+                    //state
+                    viewModel.regionLiveData.observe(viewLifecycleOwner, { state ->
+                        state_name_textview.text = state.region.province
+                        state_confirmed_textview.text =
+                            "Confirmed cases: " + state.confirmed.toString()
+                        state_deaths_textview.text = "Deaths: " + state.deaths.toString()
+                        state_active_textview.text = "Active cases: " + state.active.toString()
+                        fatality_rate_textview.text =
+                            "Fatality rate: " + state.fatality_rate.toString()
+                    })
+                }
+                //Invalid request
+                else {
+                    toastMessage("CHECK COUNTY OR STATE NAME INPUT")
+                }
             }
         }
     }
 
     private fun toastMessage(message: String) {
-        Toast.makeText(activity,message,Toast.LENGTH_SHORT).show();
+        Toast.makeText(activity, message, Toast.LENGTH_LONG).show();
     }
 }
