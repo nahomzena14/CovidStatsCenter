@@ -1,7 +1,5 @@
 package com.example.covidstats.viewmodel
 
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.covidstats.covidModel.City
@@ -11,6 +9,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
+//view model to make api call - for search tab
 class CovidViewModel : ViewModel() {
 
     private val cd = CompositeDisposable()
@@ -18,7 +17,6 @@ class CovidViewModel : ViewModel() {
     private val covidRetrofit = CovidRetrofit()
     var cityLiveData = MutableLiveData<City>()
     var regionLiveData = MutableLiveData<Data>()
-
 
     fun getNumbers(state: String, city: String) {
         validInput = true
@@ -29,18 +27,15 @@ class CovidViewModel : ViewModel() {
                 ).observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->
 
+                    //if response is received
                     if (response.data.isNotEmpty()) {
-                        //0 = USA and get cities from there
-                        //DATA(state stats) - REGION (province = state name)- region.cities[0] = city details
                         cityLiveData.postValue(response.data[0].region.cities[0])
                         regionLiveData.postValue(response.data[0])
-
-                        //Log.d("TAG_X", cityResult.name)
                         cd.clear()
                     }
+                    //if api call fails
                     else{
                         validInput = false
-                        Log.d("TAG_X", "RESPONSE INVALID")
                     }
                 }, {
                     cd.clear()

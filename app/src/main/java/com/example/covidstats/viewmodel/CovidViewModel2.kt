@@ -11,7 +11,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-
 //FOR CURRENT LOCATION TAB
 class CovidViewModel2 : ViewModel() {
 
@@ -22,33 +21,24 @@ class CovidViewModel2 : ViewModel() {
     var regionLiveData = MutableLiveData<Data>()
 
     fun getNumbers(state: String) {
-        Log.d("TAG_X", Constants.currentState)
         cd.add(
             covidRetrofit.getNumbersFromState(state.trim())
                 .subscribeOn(
                     Schedulers.io()
                 ).observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->
+                    //if response is valid
                     if(response.data.isNotEmpty()) {
-                        //Log.d("TAG_X", "City: " + response.data[0].region.cities[0])
-                        //Log.d("TAG_X", "LENGTH: "+response.data.size.toString())
 
-                        //0 = USA and get cities from there
-                        //DATA(state stats) - REGION (province = state name)- region.cities[0] = city details
                         cityLiveData.postValue(response.data[0].region.cities)
-                        Log.d("TAG_X", "RESPONSE = ${response.data[0].region.cities.size}")
                         regionLiveData.postValue(response.data[0])
-
-                        //Log.d("TAG_X", cityResult.name)
-
                         cd.clear()
                     }
                     else{
                         Log.d("TAG_X", "RESPONSE INVALID")
                     }
-                }, { throwable ->
+                }, {
                     cd.clear()
-                    Log.d("TAG_X", throwable.toString())
                 })
         )
     }

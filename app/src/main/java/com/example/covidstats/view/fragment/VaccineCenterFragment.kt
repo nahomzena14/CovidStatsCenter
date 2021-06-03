@@ -13,10 +13,13 @@ import com.example.covidstats.view.adapter.PlacesAdapter
 import com.example.covidstats.viewmodel.PlacesViewModel
 import kotlinx.android.synthetic.main.vaccine_fragment_layout.*
 
+//fragment to show nearby vaccine centers
 class VaccineCenterFragment:Fragment() {
 
     private val viewModel:PlacesViewModel by activityViewModels()
     private val adapter = PlacesAdapter()
+
+    //inflate
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,11 +33,10 @@ class VaccineCenterFragment:Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         hospital_imageview.setOnClickListener(){
-            Log.d("TAG_X","Button clicked")
+            //make api call
             viewModel.getPlacesNearMe(Constants.location)
             viewModel.liveData.observe(viewLifecycleOwner,{
-                Log.d("TAG_X","Updating result list")
-                Log.d("TAG_X","NAME = ${it[0].name}")
+                //observe live data from view model and update recycler view's list
                 adapter.updateList(it)
             })
         }

@@ -27,7 +27,7 @@ class PlacesViewModel:ViewModel() {
             try {
                 val result = retrofit.makeApiCallAsync(
                     "hospital",
-                    "",
+                    "vaccine",
                     location.toFormattedString(),
                     10000
                 ).await()

@@ -1,17 +1,16 @@
-package com.example.covidstats
+package com.example.covidstats.view.activity
 
 import android.content.Intent
-import android.graphics.drawable.Animatable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.AutoCompleteTextView
 import android.widget.ImageView
 import android.widget.TextView
-import com.example.covidstats.view.MainActivity
+import com.example.covidstats.R
 
+//activity for splash screen
 class SplashScreen : AppCompatActivity() {
 
     private lateinit var anim:Animation
@@ -22,14 +21,16 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
+        //load animation
         anim = AnimationUtils.loadAnimation(this, R.anim.slide_anim)
 
+        //add animation to views
         imageView = findViewById(R.id.splash_imageview)
         imageView.startAnimation(anim)
-
         textView = findViewById(R.id.splash_textview)
         textView.startAnimation(anim)
 
+        //after 5 seconds, open main activity
         val intent = Intent(this, MainActivity::class.java)
         Handler(mainLooper).postDelayed(
             {

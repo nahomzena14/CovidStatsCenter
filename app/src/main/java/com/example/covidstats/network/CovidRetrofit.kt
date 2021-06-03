@@ -12,6 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+//API call to get covid stats
 class CovidRetrofit {
 
     private val covidService = createRetrofit().create(CovidService::class.java)
@@ -23,20 +24,20 @@ class CovidRetrofit {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
+    //get number using city and state name
     fun getNumbers(state: String,city: String):Single<CovidResponse> {
         return covidService.getNumbers(state,city)
     }
 
+    //get number using only state name
     fun getNumbersFromState(state:String):Single<CovidResponse>{
         return covidService.getNumbersFromState(state)
     }
 
     interface CovidService {
-
         @GET(END_POINT)
         fun getNumbers(@Query(REGION) state: String,@Query(CITY) city: String): Single<CovidResponse>
         @GET(END_POINT)
         fun getNumbersFromState(@Query(REGION) state: String): Single<CovidResponse>
-
     }
 }

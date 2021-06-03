@@ -9,6 +9,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+
+//API to get nearby places based on user's current location
 class PlacesRetrofit {
     private val placeEndPoint = createRetrofit().create(PlaceEndPoint::class.java)
 

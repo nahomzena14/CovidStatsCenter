@@ -13,10 +13,12 @@ import com.example.covidstats.viewmodel.CovidViewModel
 import com.example.covidstats.viewmodel.CovidViewModel2
 import kotlinx.android.synthetic.main.search_fragment_layout.*
 
+//fragment to let user search a specific county in USA
 class SearchFragment() : Fragment() {
 
     private val viewModel: CovidViewModel by activityViewModels()
 
+    //inflate
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,35 +32,38 @@ class SearchFragment() : Fragment() {
 
         search_button.setOnClickListener() {
 
+            //get user input
             val cityName = city_edittext.text.toString().trim()
             val stateName = state_edittext.text.toString().trim()
+
             //if input is empty
             if (cityName.isEmpty()) {
                 toastMessage("Please enter a city name")
             } else if (stateName.isEmpty()) {
                 toastMessage("Please enter a state name")
-            } else {
+            }
+            //if input is given
+            else {
+                //make api call
                 viewModel.getNumbers(stateName, cityName)
-                //city
+                //city portion
                 if (viewModel.getInputValid()) {
                     viewModel.cityLiveData.observe(viewLifecycleOwner, { city ->
                         city_name_textview.text = city.name
-                        date_textview.text = "Date: " + city.date
-                        active_cases_textview.text = "Active Cases: " + city.confirmed.toString()
-                        deaths_textview.text = "Deaths: " + city.deaths.toString()
+                        ("Date: " + city.date).also { date_textview.text = it }
+                        ("Active Cases: " + city.confirmed.toString()).also { active_cases_textview.text = it }
+                        ("Deaths: " + city.deaths.toString()).also { deaths_textview.text = it }
                     })
-                    //state
+                    //state portion
                     viewModel.regionLiveData.observe(viewLifecycleOwner, { state ->
                         state_name_textview.text = state.region.province
-                        state_confirmed_textview.text =
-                            "Confirmed cases: " + state.confirmed.toString()
-                        state_deaths_textview.text = "Deaths: " + state.deaths.toString()
-                        state_active_textview.text = "Active cases: " + state.active.toString()
-                        fatality_rate_textview.text =
-                            "Fatality rate: " + state.fatality_rate.toString()
+                        ("Confirmed cases: " + state.confirmed.toString()).also { state_confirmed_textview.text = it }
+                        ("Deaths: " + state.deaths.toString()).also { state_deaths_textview.text = it }
+                        ("Active cases: " + state.active.toString()).also { state_active_textview.text = it }
+                        ("Fatality rate: " + state.fatality_rate.toString()).also { fatality_rate_textview.text = it }
                     })
                 }
-                //Invalid request
+                //Invalid request - county or state name is incorrect
                 else {
                     toastMessage("CHECK COUNTY OR STATE NAME INPUT")
                 }
@@ -66,6 +71,7 @@ class SearchFragment() : Fragment() {
         }
     }
 
+    //show error message to user using toast
     private fun toastMessage(message: String) {
         Toast.makeText(activity, message, Toast.LENGTH_LONG).show();
     }

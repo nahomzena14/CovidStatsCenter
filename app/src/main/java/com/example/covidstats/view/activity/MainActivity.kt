@@ -1,7 +1,6 @@
-package com.example.covidstats.view
+package com.example.covidstats.view.activity
 
 import android.Manifest.permission.ACCESS_FINE_LOCATION
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -39,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //call geocode to get user's location
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
         if (this@MainActivity::myLocation.isInitialized) {
             makeApiCall(myLocation)
@@ -67,14 +67,14 @@ class MainActivity : AppCompatActivity() {
         }
     )
 
-    // .locality = state name
+    //get current user location using geocode
     private fun makeApiCall(myLocation: Location) {
         Geocoder(this, Locale.getDefault()).getFromLocation(
             myLocation.latitude,
             myLocation.longitude,
             1
         )
-            //set address parts
+            //update address parts
             .also {
                 Constants.ready = true
                 Constants.currentCity = it[0].locality.toString()
@@ -88,18 +88,15 @@ class MainActivity : AppCompatActivity() {
         viewpager.setCurrentItem(frag, true)
     }
 
-    @SuppressLint("MissingPermission")
     override fun onStart() {
         super.onStart()
 
-        if (ContextCompat.checkSelfPermission(
-                this,
-                ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
+        //if location is not granted then request
+        if (ContextCompat.checkSelfPermission(this,ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestLocationPermission()
         }
 
+        //if permission is given, request current location
         locationManager.requestLocationUpdates(
             LocationManager.GPS_PROVIDER,
             5000L,
@@ -115,7 +112,6 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    @SuppressLint("MissingPermission")
     override fun onStop() {
         super.onStop()
         locationManager.removeUpdates(myLocationListener)

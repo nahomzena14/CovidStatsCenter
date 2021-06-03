@@ -2,9 +2,9 @@ package com.example.covidstats.util
 
 import android.location.Location
 
+//Class to hold constants values
 class Constants {
 
-    //https://covid-api.com/api/reports?region_province=Virginia
     companion object {
         const val BASE_URL: String = "https://covid-api.com"
         const val END_POINT: String = "api/reports"

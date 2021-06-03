@@ -13,10 +13,12 @@ import com.example.covidstats.util.Constants
 import com.example.covidstats.viewmodel.CovidViewModel2
 import kotlinx.android.synthetic.main.current_location_fragment_layout.*
 
+//Fragment to update current location tab
 class CurrentLocationFragment : Fragment() {
 
     private val viewModel: CovidViewModel2 by activityViewModels()
 
+    //inflate
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,26 +30,29 @@ class CurrentLocationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         super.onViewCreated(view, savedInstanceState)
+
+        //check if main activity has updated user's current location
         var userCurrentState = Constants.currentState.trim()
         var userCurrentAddress = Constants.currentAddress.trim()
 
+        //is location is not ready, make button not clickable
         if (userCurrentAddress.isEmpty()) {
             get_location_button.isClickable = false
-        } else {
+        }
+        //if user's current address is updated
+        else {
             get_location_button.setOnClickListener {
+                //make api call using state name
                 viewModel.getNumbers(userCurrentState)
+
                 //set views
                 "These counties in $userCurrentState are considered high risk".also {
                     avoid_textview.text = it
                 }
-                //city portion
+                //city portion - observe from livedata
                 viewModel.cityLiveData.observe(viewLifecycleOwner, { city ->
                     Log.d("TAG_X", "GONNA ASSIGN TOP 3")
                     var tempCity = topThreeCitiesGetter(city)
-                    Log.d("TAG_X", "ONE" + tempCity?.get(0)?.name)
-                    Log.d("TAG_X", "TWO" + tempCity?.get(1)?.name)
-                    Log.d("TAG_X", "THREE" + tempCity?.get(2)?.name)
-
                     var length = tempCity?.size
 
                     if (0 < length!!) {
@@ -77,13 +82,14 @@ class CurrentLocationFragment : Fragment() {
                     }
 
                 })
+                //state portion
                 viewModel.regionLiveData.observe(viewLifecycleOwner, { state ->
                     state_name_textview.text = state.region.province
                     ("Confirmed cases: " + state.confirmed.toString()).also {
                         state_confirmed_textview.text = it
                     }
                     ("Death: " + state.deaths.toString()).also { state_deaths_textview.text = it }
-                    ("Active cases: " + state.confirmed.toString()).also {
+                    ("Active cases: " + state.active.toString()).also {
                         state_active_textview.text = it
                     }
                     ("Fatality rate: " + state.fatality_rate.toString()).also {
@@ -95,8 +101,8 @@ class CurrentLocationFragment : Fragment() {
         }
     }
 
+    //sort list based on current confirmed cases
     private fun topThreeCitiesGetter(city: List<City>): List<City>? {
-
         return city.sortedWith(compareBy { it.confirmed })
     }
 
