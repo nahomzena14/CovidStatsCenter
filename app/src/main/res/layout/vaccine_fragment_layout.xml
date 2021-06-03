@@ -4,7 +4,21 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/blue">
+    android:background="@color/red">
+
+
+    <ImageView
+        android:id="@+id/hospital_imageview"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:src="@drawable/ic_hospital"
+        android:background="@color/white"
+        android:padding="1dp"
+        android:layout_margin="16dp"/>
+
 
     <TextView
         android:id="@+id/vaccine_textview"
@@ -12,13 +26,11 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Vaccinations Centers near:"
+        app:layout_constraintTop_toBottomOf="@id/hospital_imageview"
+        android:text="Nearby Hospital and Vaccination centers"
         android:textAlignment="center"
-        android:textSize="28sp"
-        android:textColor="@color/black"
-        android:layout_margin="16dp"
-        android:background="@color/white"/>
+        android:textSize="20sp"
+        android:textColor="@color/white"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/vaccine_recyclerview"
@@ -30,6 +42,7 @@
         android:layout_margin="16dp"
         tools:listitem="@layout/vaccination_item_layout"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

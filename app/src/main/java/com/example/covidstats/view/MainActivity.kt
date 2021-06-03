@@ -1,14 +1,10 @@
 package com.example.covidstats.view
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.pm.PackageManager
 import android.location.*
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import com.example.covidstats.R
 import com.example.covidstats.databinding.ActivityMainBinding
 import com.example.covidstats.util.Constants
@@ -67,12 +63,13 @@ class MainActivity : AppCompatActivity() {
             myLocation.longitude,
             1
         )
-                //set address parts
+            //set address parts
             .also {
+                Constants.ready = true
                 Constants.currentCity = it[0].locality.toString()
-                Constants.currentState =  it[0].adminArea
+                Constants.currentState = it[0].adminArea
                 Constants.currentAddress = it[0].getAddressLine(0)
-
+                Constants.location = myLocation
             }
     }
 

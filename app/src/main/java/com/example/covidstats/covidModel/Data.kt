@@ -1,4 +1,4 @@
-package com.example.covidstats.model
+package com.example.covidstats.covidModel
 
 data class Data(
     val active: Int,

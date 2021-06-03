@@ -8,17 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.covidstats.R
-import com.example.covidstats.model.City
+import com.example.covidstats.covidModel.City
 import com.example.covidstats.util.Constants
-import com.example.covidstats.viewmodel.CovidViewModel
 import com.example.covidstats.viewmodel.CovidViewModel2
 import kotlinx.android.synthetic.main.current_location_fragment_layout.*
 
 class CurrentLocationFragment : Fragment() {
 
     private val viewModel: CovidViewModel2 by activityViewModels()
-    private var temp = ""
-    private lateinit var topThreeCities: MutableList<City>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,28 +36,27 @@ class CurrentLocationFragment : Fragment() {
         } else {
 
             get_location_button.setOnClickListener {
-
                 viewModel.getNumbers(userCurrentState)
-                Log.d("TAG_X",userCurrentState)
                 //set views
                 avoid_textview.text = "These counties in $userCurrentState are considered high risk"
                 //city portion
                 viewModel.cityLiveData.observe(viewLifecycleOwner, { city ->
-                    topThreeCitiesGetter(city)
+                    Log.d("TAG_X","GONNA ASSIGN TOP 3")
+                    var tempCity = topThreeCitiesGetter(city)
+                    Log.d("TAG_X","ONE"+ tempCity?.get(0)?.name)
+                    Log.d("TAG_X","TWO"+tempCity?.get(1)?.name)
+                    Log.d("TAG_X","THREE"+tempCity?.get(2)?.name)
 
-                    var length = topThreeCities.indices as Int
-                    Log.d("TAG_X","ONE"+topThreeCities[0].name)
-                    Log.d("TAG_X","TWO"+topThreeCities[1].name)
-                    Log.d("TAG_X","THREE"+topThreeCities[2].name)
+                    var length = tempCity?.size
 
-                    if(0 < length){
-                        avoid_1.text = topThreeCities[0].name +": Active cases: ${topThreeCities[0].confirmed}"
+                    if(0 < length!!){
+                        avoid_1.text = tempCity?.get(length-1)?.name +": Active cases: ${tempCity?.get(length-1)?.confirmed}"
                     }
-                    if(1 < length){
-                        avoid_2.text = topThreeCities[1].name +": Active cases: ${topThreeCities[1].confirmed}"
+                    if(1 < length!!){
+                        avoid_2.text = tempCity?.get(length-2)?.name +": Active cases: ${tempCity?.get(length-2)?.confirmed}"
                     }
-                    if(2 < length){
-                        avoid_3.text = topThreeCities[2].name +": Active cases: ${topThreeCities[2].confirmed}"
+                    if(2 < length!!){
+                        avoid_3.text = tempCity?.get(length-3)?.name +": Active cases: ${tempCity?.get(length-3)?.confirmed}"
                     }
 
                 })
@@ -78,13 +74,9 @@ class CurrentLocationFragment : Fragment() {
         }
     }
 
-    fun topThreeCitiesGetter(city: List<City>){
+    private fun topThreeCitiesGetter(city: List<City>): List<City>? {
 
-        val sortedList = city.sortedWith(compareBy { it.confirmed })
-
-        for (i in city){
-            topThreeCities.add(i)
-        }
+        return city.sortedWith(compareBy { it.confirmed })
     }
 
 }

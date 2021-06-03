@@ -1,7 +1,6 @@
 package com.example.covidstats.network
 
-import com.example.covidstats.model.City
-import com.example.covidstats.model.CovidResponse
+import com.example.covidstats.covidModel.CovidResponse
 import com.example.covidstats.util.Constants.Companion.BASE_URL
 import com.example.covidstats.util.Constants.Companion.CITY
 import com.example.covidstats.util.Constants.Companion.END_POINT

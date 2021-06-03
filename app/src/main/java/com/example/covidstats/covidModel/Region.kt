@@ -1,4 +1,4 @@
-package com.example.covidstats.model
+package com.example.covidstats.covidModel
 
 data class Region(
     val cities: List<City>,

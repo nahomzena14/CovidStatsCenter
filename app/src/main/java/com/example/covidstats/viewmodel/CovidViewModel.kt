@@ -3,8 +3,8 @@ package com.example.covidstats.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.covidstats.model.City
-import com.example.covidstats.model.Data
+import com.example.covidstats.covidModel.City
+import com.example.covidstats.covidModel.Data
 import com.example.covidstats.network.CovidRetrofit
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -28,15 +28,13 @@ class CovidViewModel : ViewModel() {
                 ).observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->
 
-                    if (response.data.size != 0) {
+                    if (response.data.isNotEmpty()) {
                         //0 = USA and get cities from there
                         //DATA(state stats) - REGION (province = state name)- region.cities[0] = city details
-                        Log.d("TAG_X", "City: " + response.data[0].region.cities[0])
                         cityLiveData.postValue(response.data[0].region.cities[0])
                         regionLiveData.postValue(response.data[0])
 
                         //Log.d("TAG_X", cityResult.name)
-
                         cd.clear()
                     }
                     else{
