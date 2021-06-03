@@ -73,6 +73,6 @@ class SearchFragment() : Fragment() {
 
     //show error message to user using toast
     private fun toastMessage(message: String) {
-        Toast.makeText(activity, message, Toast.LENGTH_LONG).show();
+        Toast.makeText(activity, message, Toast.LENGTH_LONG).show()
     }
 }

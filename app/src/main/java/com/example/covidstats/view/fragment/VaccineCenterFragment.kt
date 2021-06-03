@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.SnapHelper
 import com.example.covidstats.R
 import com.example.covidstats.util.Constants
 import com.example.covidstats.view.adapter.PlacesAdapter
@@ -30,6 +32,8 @@ class VaccineCenterFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         vaccine_recyclerview.adapter = adapter
+        val snapHelper: SnapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(vaccine_recyclerview)
         super.onViewCreated(view, savedInstanceState)
 
         hospital_imageview.setOnClickListener(){

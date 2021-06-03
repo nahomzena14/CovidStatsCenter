@@ -29,7 +29,7 @@ class PlacesAdapter: RecyclerView.Adapter<PlacesAdapter.LocationViewHolder>() {
                 //assign values
                 vaccine_name_textview.text = it.name
                 vaccine_address_textview.text = it.vicinity
-                "Opens at ${it.opening_hours}".also { vaccine_open_close_textview.text = it }
+                it.business_status.also { vaccine_open_close_textview.text = it }
             }
         }
     }

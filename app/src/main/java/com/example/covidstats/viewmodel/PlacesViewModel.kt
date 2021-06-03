@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 
 class PlacesViewModel:ViewModel() {
 
+    //use coroutines to make api call
     private var netJob: Job? = null
     private val retrofit = PlacesRetrofit()
     val liveData:MutableLiveData<List<Result>> = MutableLiveData()

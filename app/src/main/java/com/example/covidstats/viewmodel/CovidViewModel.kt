@@ -12,8 +12,9 @@ import io.reactivex.schedulers.Schedulers
 //view model to make api call - for search tab
 class CovidViewModel : ViewModel() {
 
+    //use rx java to make api call
     private val cd = CompositeDisposable()
-    private var validInput:Boolean = false;
+    private var validInput:Boolean = false
     private val covidRetrofit = CovidRetrofit()
     var cityLiveData = MutableLiveData<City>()
     var regionLiveData = MutableLiveData<Data>()
@@ -49,7 +50,7 @@ class CovidViewModel : ViewModel() {
     }
 
     fun getInputValid():Boolean{
-        return validInput;
+        return validInput
     }
 
 }

@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.covidstats.R
@@ -38,9 +39,11 @@ class CurrentLocationFragment : Fragment() {
         //is location is not ready, make button not clickable
         if (userCurrentAddress.isEmpty()) {
             get_location_button.isClickable = false
+            Toast.makeText(activity,"Getting your current location. Check other tabs for now",Toast.LENGTH_SHORT).show()
         }
         //if user's current address is updated
         else {
+            Toast.makeText(activity,"Location is ready. Click button above",Toast.LENGTH_SHORT).show()
             get_location_button.setOnClickListener {
                 //make api call using state name
                 viewModel.getNumbers(userCurrentState)
@@ -102,7 +105,7 @@ class CurrentLocationFragment : Fragment() {
     }
 
     //sort list based on current confirmed cases
-    private fun topThreeCitiesGetter(city: List<City>): List<City>? {
+    private fun topThreeCitiesGetter(city: List<City>): List<City> {
         return city.sortedWith(compareBy { it.confirmed })
     }
 
