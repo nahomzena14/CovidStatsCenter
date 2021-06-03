@@ -6,6 +6,10 @@
         android:title="Advices"
         android:icon="@drawable/ic_advice"/>
     <item
+        android:id="@+id/vaccine_menu"
+        android:title="Vaccine centers"
+        android:icon="@drawable/ic_vaccination"/>
+    <item
         android:id="@+id/current_location_menu"
         android:title="Your Location"
         android:icon="@drawable/ic_current_location"/>
@@ -13,11 +17,4 @@
         android:id="@+id/search_menu"
         android:title="Search County"
         android:icon="@drawable/ic_search"/>
-
-    <item
-        android:id="@+id/vaccine_menu"
-        android:title="Vaccine centers"
-        android:icon="@drawable/ic_vaccination"/>
-
-
 </menu>

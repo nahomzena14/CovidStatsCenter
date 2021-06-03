@@ -27,9 +27,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/hospital_imageview"
-        android:text="Nearby Hospital and Vaccination centers"
+        android:text="Press Cross Button to get Vaccination centers"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="19sp"
         android:textColor="@color/white"/>
 
     <androidx.recyclerview.widget.RecyclerView

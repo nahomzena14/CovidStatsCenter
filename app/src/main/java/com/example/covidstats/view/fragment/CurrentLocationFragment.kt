@@ -36,51 +36,46 @@ class CurrentLocationFragment : Fragment() {
         var userCurrentState = Constants.currentState.trim()
         var userCurrentAddress = Constants.currentAddress.trim()
 
-        //is location is not ready, make button not clickable
-        if (userCurrentAddress.isEmpty()) {
-            get_location_button.isClickable = false
-            Toast.makeText(activity,"Getting your current location. Check other tabs for now",Toast.LENGTH_SHORT).show()
-        }
-        //if user's current address is updated
-        else {
-            Toast.makeText(activity,"Location is ready. Click button above",Toast.LENGTH_SHORT).show()
-            get_location_button.setOnClickListener {
+        get_location_button.setOnClickListener {
+            //if address is not updated, check later
+            if (Constants.currentAddress.isEmpty()) {
+                get_location_button.isClickable = true
+                Toast.makeText(activity,"Getting your current location. Check other tabs for now",Toast.LENGTH_SHORT).show()
+            }
+            //when address is updated, let the user know and make a call
+            else {
                 //make api call using state name
                 viewModel.getNumbers(userCurrentState)
-
                 //set views
-                "These counties in $userCurrentState are considered high risk".also {
-                    avoid_textview.text = it
-                }
                 //city portion - observe from livedata
                 viewModel.cityLiveData.observe(viewLifecycleOwner, { city ->
                     Log.d("TAG_X", "GONNA ASSIGN TOP 3")
                     var tempCity = topThreeCitiesGetter(city)
-                    var length = tempCity?.size
+                    var length = tempCity.size
 
-                    if (0 < length!!) {
-                        (tempCity?.get(length - 1)?.name + ": Active cases: ${
-                            tempCity?.get(length - 1)?.confirmed
+                    if (0 < length) {
+                        (tempCity[length - 1].name + ": Active cases: ${
+                            tempCity[length - 1].confirmed
                         }").also { avoid_1.text = it }
                     }
-                    if (1 < length!!) {
-                        (tempCity?.get(length - 2)?.name + ": Active cases: ${
-                            tempCity?.get(length - 2)?.confirmed
+                    if (1 < length) {
+                        (tempCity[length - 2].name + ": Active cases: ${
+                            tempCity[length - 2].confirmed
                         }").also { avoid_2.text = it }
                     }
-                    if (2 < length!!) {
-                        (tempCity?.get(length - 3)?.name + ": Active cases: ${
-                            tempCity?.get(length - 3)?.confirmed
+                    if (2 < length) {
+                        (tempCity[length - 3].name + ": Active cases: ${
+                            tempCity[length - 3].confirmed
                         }").also { avoid_3.text = it }
                     }
-                    if (3 < length!!) {
-                        (tempCity?.get(length - 4)?.name + ": Active cases: ${
-                            tempCity?.get(length - 4)?.confirmed
+                    if (3 < length) {
+                        (tempCity[length - 4].name + ": Active cases: ${
+                            tempCity[length - 4].confirmed
                         }").also { avoid_4.text = it }
                     }
-                    if (4 < length!!) {
-                        (tempCity?.get(length - 5)?.name + ": Active cases: ${
-                            tempCity?.get(length - 4)?.confirmed
+                    if (4 < length) {
+                        (tempCity[length - 5].name + ": Active cases: ${
+                            tempCity[length - 4].confirmed
                         }").also { avoid_5.text = it }
                     }
 
@@ -99,10 +94,13 @@ class CurrentLocationFragment : Fragment() {
                         fatality_rate_textview.text = it
                     }
                 })
-
+                "These counties in $userCurrentState are considered high risk".also {
+                    avoid_textview.text = it
+                }
             }
         }
     }
+
 
     //sort list based on current confirmed cases
     private fun topThreeCitiesGetter(city: List<City>): List<City> {

@@ -38,6 +38,7 @@ class VaccineCenterFragment:Fragment() {
 
         hospital_imageview.setOnClickListener(){
             //make api call
+            //vaccine_textview.text = "Nearby Vaccination Centers"
             viewModel.getPlacesNearMe(Constants.location)
             viewModel.liveData.observe(viewLifecycleOwner,{
                 //observe live data from view model and update recycler view's list

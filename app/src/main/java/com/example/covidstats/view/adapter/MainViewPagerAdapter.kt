@@ -6,7 +6,10 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.example.covidstats.view.fragment.*
 
 //Adapter for main view pager
-class MainViewPagerAdapter(fragmentManager: FragmentManager): FragmentPagerAdapter(fragmentManager,     FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
+class MainViewPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(
+    fragmentManager,
+    FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
+) {
     //numbers of options
     override fun getCount(): Int {
         return 4
@@ -14,11 +17,11 @@ class MainViewPagerAdapter(fragmentManager: FragmentManager): FragmentPagerAdapt
 
     //call fragment based on user selection
     override fun getItem(position: Int): Fragment {
-        return when(position){
-            0-> AdviceFragment()
-            1-> CurrentLocationFragment()
-            2-> SearchFragment()
-            else -> VaccineCenterFragment()
+        return when (position) {
+            0 -> AdviceFragment()
+            1 -> VaccineCenterFragment()
+            2 -> CurrentLocationFragment()
+            else -> SearchFragment()
         }
     }
 }

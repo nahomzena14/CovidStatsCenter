@@ -50,9 +50,9 @@ class MainActivity : AppCompatActivity() {
         main_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.advice_menu -> openFragment(0)
-                R.id.current_location_menu -> openFragment(1)
-                R.id.search_menu -> openFragment(2)
-                R.id.vaccine_menu -> openFragment(3)
+                R.id.vaccine_menu -> openFragment(1)
+                R.id.current_location_menu -> openFragment(2)
+                R.id.search_menu -> openFragment(3)
             }
             true
         }
